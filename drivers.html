@@ -111,6 +111,8 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
+console.log("DRIVERS PAGE LOADED");
+
 try {
 
 const querySnapshot = await getDocs(collection(db,"drivers"));
