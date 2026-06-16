@@ -1,13 +1,9 @@
-```html
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Attendance System</title>
+<title>Attendance System Login</title>
 
 <style>
 
@@ -25,29 +21,31 @@ margin:0;
 background:white;
 padding:30px;
 border-radius:10px;
-width:350px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+width:380px;
+box-shadow:0 0 15px rgba(0,0,0,0.1);
 }
 
 h1{
 text-align:center;
+margin-bottom:20px;
 }
 
 input{
 width:100%;
-padding:10px;
+padding:12px;
 margin-top:10px;
 box-sizing:border-box;
 }
 
 button{
 width:100%;
-padding:10px;
+padding:12px;
 margin-top:15px;
 background:#0d47a1;
 color:white;
 border:none;
 cursor:pointer;
+font-size:16px;
 }
 
 button:hover{
@@ -55,13 +53,19 @@ opacity:0.9;
 }
 
 #message{
-margin-top:10px;
+margin-top:15px;
 text-align:center;
 font-weight:bold;
 }
 
-</style>
+.note{
+margin-top:15px;
+text-align:center;
+font-size:13px;
+color:#666;
+}
 
+</style>
 </head>
 
 <body>
@@ -86,41 +90,34 @@ Login
 
 <p id="message"></p>
 
+<p class="note">
+Contact Administrator for Account Creation
+</p>
+
 </div>
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
 getAuth,
 signInWithEmailAndPassword
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-
 apiKey: "AIzaSyDxOKjpwu30bMMCU513wco0-4HBICijjzw",
-
 authDomain: "attendance-b82c6.firebaseapp.com",
-
 projectId: "attendance-b82c6",
-
 storageBucket: "attendance-b82c6.firebasestorage.app",
-
 messagingSenderId: "488027292632",
-
 appId: "1:488027292632:web:87226afd2e4925017e28ad"
-
 };
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 
-document
-.getElementById("loginBtn")
+document.getElementById("loginBtn")
 .addEventListener("click",()=>{
 
 const email =
@@ -158,6 +155,4 @@ document.getElementById("message").innerHTML=error.message;
 </script>
 
 </body>
-
 </html>
-```
