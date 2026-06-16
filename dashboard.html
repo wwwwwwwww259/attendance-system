@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:0;
+}
+
+.header{
+background:#0d47a1;
+color:white;
+padding:20px;
+font-size:28px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 5px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+.number{
+font-size:40px;
+font-weight:bold;
+color:#0d47a1;
+}
+
+.menu{
+margin-top:30px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.btn{
+background:#0d47a1;
+color:white;
+padding:20px;
+text-align:center;
+border-radius:10px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+Attendance Dashboard
+
+</div>
+
+<div class="container">
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Employees</h3>
+<div class="number" id="employees">0</div>
+</div>
+
+<div class="card">
+<h3>Total Drivers</h3>
+<div class="number" id="drivers">0</div>
+</div>
+
+<div class="card">
+<h3>Present Today</h3>
+<div class="number" id="attendance">0</div>
+</div>
+
+<div class="card">
+<h3>Active Trips</h3>
+<div class="number" id="trips">0</div>
+</div>
+
+</div>
+
+<div class="menu">
+
+<div class="btn">Employees</div>
+
+<div class="btn">Drivers</div>
+
+<div class="btn">Attendance</div>
+
+<div class="btn">Trips</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
