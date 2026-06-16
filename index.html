@@ -1,21 +1,157 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Attendance System</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Attendance System</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f5f6fa;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.container{
+background:white;
+padding:30px;
+border-radius:10px;
+width:350px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:10px;
+margin-top:15px;
+background:#0d47a1;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+#message{
+margin-top:10px;
+text-align:center;
+}
+
+</style>
+
 </head>
+
 <body>
+
+<div class="container">
 
 <h1>Attendance System</h1>
 
-<h2>Login</h2>
+<input
+type="email"
+id="email"
+placeholder="Email">
 
-<input type="email" id="email" placeholder="Email">
-<br><br>
+<input
+type="password"
+id="password"
+placeholder="Password">
 
-<input type="password" id="password" placeholder="Password">
-<br><br>
+<button id="loginBtn">
+Login
+</button>
 
-<button>Login</button>
+<p id="message"></p>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+signInWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDxOKjpwu30bMMCU513wco0-4HBICijjzw",
+
+authDomain: "attendance-b82c6.firebaseapp.com",
+
+projectId: "attendance-b82c6",
+
+storageBucket: "attendance-b82c6.firebasestorage.app",
+
+messagingSenderId: "488027292632",
+
+appId: "1:488027292632:web:87226afd2e4925017e28ad"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+document
+.getElementById("loginBtn")
+.addEventListener("click",()=>{
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+signInWithEmailAndPassword(
+auth,
+email,
+password
+)
+
+.then(()=>{
+
+document.getElementById("message")
+.innerHTML="Login Successful";
+
+})
+
+.catch((error)=>{
+
+document.getElementById("message")
+.innerHTML=error.message;
+
+});
+
+});
+
+</script>
 
 </body>
+
 </html>
