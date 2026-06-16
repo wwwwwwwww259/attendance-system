@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Attendance System Login</title>
+
+<title>Attendance System</title>
 
 <style>
 
@@ -21,8 +24,8 @@ margin:0;
 background:white;
 padding:30px;
 border-radius:10px;
-width:380px;
-box-shadow:0 0 15px rgba(0,0,0,0.1);
+width:350px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 h1{
@@ -59,13 +62,14 @@ font-weight:bold;
 }
 
 .note{
-margin-top:15px;
 text-align:center;
-font-size:13px;
+margin-top:15px;
 color:#666;
+font-size:14px;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -98,33 +102,55 @@ Contact Administrator for Account Creation
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
 getAuth,
 signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-apiKey: "AIzaSyDxOKjpwu30bMMCU513wco0-4HBICijjzw",
+
+apiKey: "AIzaSyDx0Kjpwu3ObMMCU513wco0-4HBICijjzw",
+
 authDomain: "attendance-b82c6.firebaseapp.com",
+
 projectId: "attendance-b82c6",
+
 storageBucket: "attendance-b82c6.firebasestorage.app",
+
 messagingSenderId: "488027292632",
+
 appId: "1:488027292632:web:87226afd2e4925017e28ad"
+
 };
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
-document.getElementById("loginBtn")
+document
+.getElementById("loginBtn")
 .addEventListener("click",()=>{
 
 const email =
-document.getElementById("email").value;
+document.getElementById("email").value.trim();
 
 const password =
 document.getElementById("password").value;
+
+if(email === "" || password === ""){
+
+document.getElementById("message").style.color="red";
+
+document.getElementById("message").innerHTML=
+"Please enter email and password.";
+
+return;
+
+}
 
 signInWithEmailAndPassword(
 auth,
@@ -132,13 +158,17 @@ email,
 password
 )
 
-.then(()=>{
+.then((userCredential)=>{
 
 document.getElementById("message").style.color="green";
-document.getElementById("message").innerHTML="Login Successful!";
+
+document.getElementById("message").innerHTML=
+"Login Successful!";
 
 setTimeout(()=>{
+
 window.location.href="dashboard.html";
+
 },1000);
 
 })
@@ -146,7 +176,11 @@ window.location.href="dashboard.html";
 .catch((error)=>{
 
 document.getElementById("message").style.color="red";
-document.getElementById("message").innerHTML=error.message;
+
+document.getElementById("message").innerHTML=
+"Firebase: " + error.message;
+
+console.error(error);
 
 });
 
@@ -155,4 +189,5 @@ document.getElementById("message").innerHTML=error.message;
 </script>
 
 </body>
+
 </html>
