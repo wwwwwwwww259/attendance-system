@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Employees</title>
 
 <style>
@@ -25,6 +28,7 @@ border:none;
 padding:10px 15px;
 cursor:pointer;
 margin-bottom:20px;
+border-radius:5px;
 }
 
 table{
@@ -72,6 +76,69 @@ Back to Dashboard
 </tbody>
 
 </table>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDx0Kjpwu3ObMMCU513wco0-4HBICijjzw",
+
+authDomain: "attendance-b82c6.firebaseapp.com",
+
+projectId: "attendance-b82c6",
+
+storageBucket: "attendance-b82c6.firebasestorage.app",
+
+messagingSenderId: "488027292632",
+
+appId: "1:488027292632:web:87226afd2e4925017e28ad"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+async function loadEmployees(){
+
+const querySnapshot =
+await getDocs(collection(db,"employees"));
+
+const table =
+document.getElementById("employeeTable");
+
+table.innerHTML="";
+
+querySnapshot.forEach((doc)=>{
+
+const data = doc.data();
+
+table.innerHTML += `
+<tr>
+<td>${data.employeeId || ""}</td>
+<td>${data.name || ""}</td>
+<td>${data.department || ""}</td>
+<td>${data.status || ""}</td>
+</tr>
+`;
+
+});
+
+}
+
+loadEmployees();
+
+</script>
 
 </body>
 </html>
