@@ -1,10 +1,10 @@
+```html
 <!DOCTYPE html>
 <html>
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Attendance System</title>
@@ -57,6 +57,7 @@ opacity:0.9;
 #message{
 margin-top:10px;
 text-align:center;
+font-weight:bold;
 }
 
 </style>
@@ -136,15 +137,19 @@ password
 
 .then(()=>{
 
-document.getElementById("message")
-.innerHTML="Login Successful";
+document.getElementById("message").style.color="green";
+document.getElementById("message").innerHTML="Login Successful!";
+
+setTimeout(()=>{
+window.location.href="dashboard.html";
+},1000);
 
 })
 
 .catch((error)=>{
 
-document.getElementById("message")
-.innerHTML=error.message;
+document.getElementById("message").style.color="red";
+document.getElementById("message").innerHTML=error.message;
 
 });
 
@@ -155,3 +160,4 @@ document.getElementById("message")
 </body>
 
 </html>
+```
