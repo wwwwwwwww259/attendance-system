@@ -111,15 +111,13 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-const querySnapshot =
-await getDocs(collection(db,"drivers"));
+try {
+
+const querySnapshot = await getDocs(collection(db,"drivers"));
 
 let html = "";
 
 querySnapshot.forEach((doc)=>{
-
-console.log("Driver Data:", data);
-
 
 const data = doc.data();
 
@@ -137,7 +135,12 @@ html += `
 
 document.getElementById("driverTable").innerHTML = html;
 
-</script>
+}
+catch(error){
 
-</body>
-</html>
+console.error(error);
+
+document.getElementById("driverTable").innerHTML =
+`<tr><td colspan="5">Error: ${error.message}</td></tr>`;
+
+}
