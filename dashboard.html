@@ -1,14 +1,22 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Dashboard</title>
 
 <style>
 
-body{
-font-family:Arial;
-background:#f4f6f9;
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
 }
 
 .header{
@@ -25,16 +33,22 @@ padding:20px;
 
 .cards{
 display:grid;
-grid-template-columns:repeat(4,1fr);
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
+margin-bottom:30px;
 }
 
 .card{
 background:white;
 padding:20px;
 border-radius:10px;
-box-shadow:0 0 5px rgba(0,0,0,0.2);
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
 text-align:center;
+}
+
+.card h3{
+margin-bottom:10px;
+color:#555;
 }
 
 .number{
@@ -44,18 +58,32 @@ color:#0d47a1;
 }
 
 .menu{
-margin-top:30px;
 display:grid;
-grid-template-columns:repeat(4,1fr);
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
 }
 
-.btn{
+.menu-btn{
 background:#0d47a1;
 color:white;
 padding:20px;
 text-align:center;
 border-radius:10px;
+cursor:pointer;
+font-size:18px;
+font-weight:bold;
+}
+
+.menu-btn:hover{
+background:#1565c0;
+}
+
+.logout{
+float:right;
+background:red;
+padding:10px 15px;
+border-radius:5px;
+font-size:14px;
 cursor:pointer;
 }
 
@@ -69,6 +97,10 @@ cursor:pointer;
 
 Attendance Dashboard
 
+<span class="logout" onclick="logout()">
+Logout
+</span>
+
 </div>
 
 <div class="container">
@@ -77,39 +109,64 @@ Attendance Dashboard
 
 <div class="card">
 <h3>Total Employees</h3>
-<div class="number" id="employees">0</div>
+<div class="number">1</div>
 </div>
 
 <div class="card">
 <h3>Total Drivers</h3>
-<div class="number" id="drivers">0</div>
+<div class="number">1</div>
 </div>
 
 <div class="card">
 <h3>Present Today</h3>
-<div class="number" id="attendance">0</div>
+<div class="number">1</div>
 </div>
 
 <div class="card">
 <h3>Active Trips</h3>
-<div class="number" id="trips">0</div>
+<div class="number">1</div>
 </div>
 
 </div>
 
 <div class="menu">
 
-<div class="btn">Employees</div>
+<div class="menu-btn">
+Employees
+</div>
 
-<div class="btn">Drivers</div>
+<div class="menu-btn">
+Drivers
+</div>
 
-<div class="btn">Attendance</div>
+<div class="menu-btn">
+Attendance
+</div>
 
-<div class="btn">Trips</div>
+<div class="menu-btn">
+Trips
+</div>
 
+<div class="menu-btn">
+Payroll
+</div>
+
+<div class="menu-btn">
+Reports
 </div>
 
 </div>
+
+</div>
+
+<script>
+
+function logout(){
+window.location.href="index.html";
+}
+
+</script>
 
 </body>
 </html>
+```
