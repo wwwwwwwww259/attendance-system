@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Drivers</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+padding:30px;
+}
+
+h1{
+color:#0d47a1;
+margin-bottom:20px;
+}
+
+button{
+background:#0d47a1;
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:5px;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+button:hover{
+background:#1565c0;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+th{
+background:#0d47a1;
+color:white;
+padding:12px;
+text-align:left;
+}
+
+td{
+padding:12px;
+border:1px solid #ddd;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Drivers</h1>
+
+<button onclick="window.location.href='dashboard.html'">
+Back to Dashboard
+</button>
+
+<table>
+
+<thead>
+<tr>
+<th>Driver ID</th>
+<th>Name</th>
+<th>Department</th>
+<th>Status</th>
+<th>Current Trip</th>
+</tr>
+</thead>
+
+<tbody id="driverTable">
+</tbody>
+
+</table>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDx0Kjpwu3ObMMCU513wco0-4HBICijjzw",
+
+authDomain: "attendance-b82c6.firebaseapp.com",
+
+projectId: "attendance-b82c6",
+
+storageBucket: "attendance-b82c6.firebasestorage.app",
+
+messagingSenderId: "488027292632",
+
+appId: "1:488027292632:web:87226afd2e4925017e28ad"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const querySnapshot =
+await getDocs(collection(db,"drivers"));
+
+let html = "";
+
+querySnapshot.forEach((doc)=>{
+
+const data = doc.data();
+
+html += `
+<tr>
+<td>${data.driverId || ""}</td>
+<td>${data.name || ""}</td>
+<td>${data.department || ""}</td>
+<td>${data.status || ""}</td>
+<td>${data.currentTrip || ""}</td>
+</tr>
+`;
+
+});
+
+document.getElementById("driverTable").innerHTML = html;
+
+</script>
+
+</body>
+</html>
